@@ -71,7 +71,7 @@ Decided on feeding +12V from the bus to the VIN pin and let the Uno's regulator 
 
 ## Front panel
 
-The 3D-printable front panel is in [`panel/Arduino-VCO-Thing-Panel.stl`](Arduino-VCO-Thing-Panel.stl). The photos of the prototype show an earlier version.
+The 3D-printable front panel is in [`Arduino-VCO-Thing-Panel.stl`](Arduino-VCO-Thing-Panel.stl). The photos of the prototype show an earlier version.
 
 The original design is on Tinkercad, if you want to export it in another format or tinker with it: [Arduino-VCO-Thing-Panel](https://www.tinkercad.com/things/0LKR8gH9oFq-arduino-vco-thing-panel)
 
