@@ -6,7 +6,7 @@ A simple digital oscillator for Eurorack, built with an Arduino Uno and the [Moz
 
 It's an experimental project, built from scrap parts and a 3d printed front panel, meant more for learning and playing. 
 
-First I noticed is that I got the buttons on the wrong side of the panel, I noticed that when I wired the jacks wrong too. I fixed that on the STL and on TinkerCAD. I also added stiffeners to the panel and changed the sockets for the LEDs. My plans include reprinting the panel with an updated design (already on the STL available here) in translucent grey PETG (LEDs will be incased and shine through the PETG, no holes for the LEDs anymore) and make another module with more care towards soldering and wire positioning.
+First I noticed is that I got the buttons on the wrong side of the panel, I noticed that when I wired the jacks wrong too. I fixed that on the STL and on TinkerCAD. I also added stiffeners to the panel and changed the sockets for the LEDs. My plans include reprinting the panel with an updated design (already on the STL available here) in translucent grey PETG (LEDs will shine through the PETG, no holes for the LEDs anymore) and make another module with more care towards soldering and wire positioning.
 
 ## Demo 
 
