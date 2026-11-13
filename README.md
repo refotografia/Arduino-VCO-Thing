@@ -2,15 +2,13 @@
 
 A simple digital oscillator for Eurorack, built with an Arduino Uno and the [Mozzi](https://github.com/sensorium/Mozzi) library. It reads a 1V/octave CV input and a tuning pot, can quantize notes to a scale, and offers eight waveforms selected with a button.
 
+<img width="3072" height="4080" alt="IMG_20261113_092523" src="https://github.com/user-attachments/assets/dc855520-040f-41b6-aea0-c4ce39e114b1" />
+
 It's an experimental project, built from scrap parts and a reused front panel, meant more for learning and playing than for competing with commercial modules.
 
-## Demo
+## Demo 
 
-[![Arduino-VCO-Thing demo](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
-
-## Photos
-
-![First prototype](images/prototype-1.jpg)
+[![Arduino-VCO-Thing demo](https://img.youtube.com/vi/dJxtJrnOvVs/maxresdefault.jpg)](https://www.youtube.com/watch?v=dJxtJrnOvVs)
 
 ## Features
 
@@ -69,18 +67,18 @@ The output level is a few volts, below the usual 10V peak-to-peak of Eurorack. A
 
 ### Power
 
-The safest option is to feed +12V from the bus to the VIN pin and let the Uno's regulator do the work. If you power it with 5V directly on the 5V pin, don't connect USB at the same time.
+Decided on feeding +12V from the bus to the VIN pin and let the Uno's regulator do the work. If you power it with 5V directly on the 5V pin, don't connect USB at the same time.
 
 ## Front panel
 
-The 3D-printable front panel is in [`panel/Arduino-VCO-Thing-Panel.stl`](panel/Arduino-VCO-Thing-Panel.stl).
+The 3D-printable front panel is in [`panel/Arduino-VCO-Thing-Panel.stl`](Arduino-VCO-Thing-Panel.stl). The photos of the prototype show an earlier version.
 
 The original design is on Tinkercad, if you want to export it in another format or tinker with it: [Arduino-VCO-Thing-Panel](https://www.tinkercad.com/things/0LKR8gH9oFq-arduino-vco-thing-panel)
 
 ## Building
 
 1. Install the Mozzi library (version 2.x) from the Arduino IDE library manager.
-2. Open `vco_painel.ino`, select the Arduino Uno board and upload.
+2. Open the ino file, select the Arduino Uno board and upload.
 
 ### Compile error with the Linux distro Arduino IDE
 
