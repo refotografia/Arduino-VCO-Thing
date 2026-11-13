@@ -2,9 +2,9 @@
 
 A simple digital oscillator for Eurorack, built with an Arduino Uno and the [Mozzi](https://github.com/sensorium/Mozzi) library. It reads a 1V/octave CV input and a tuning pot, can quantize notes to a scale, and offers eight waveforms selected with a button.
 
-<img width="3072" height="4080" alt="IMG_20261113_092523" src="https://github.com/user-attachments/assets/dc855520-040f-41b6-aea0-c4ce39e114b1" />
+<img width="600" height="800" alt="IMG_20261113_092523" src="https://github.com/user-attachments/assets/dc855520-040f-41b6-aea0-c4ce39e114b1" />
 
-It's an experimental project, built from scrap parts and a reused front panel, meant more for learning and playing than for competing with commercial modules.
+It's an experimental project, built from scrap parts and a 3d printed front panel, meant more for learning and playing.
 
 ## Demo 
 
