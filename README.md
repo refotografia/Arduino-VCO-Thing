@@ -20,6 +20,7 @@ First I noticed is that I got the buttons on the wrong side of the panel, I noti
 - Scale configurable in the code (minor pentatonic by default)
 - Eight waveforms, each with its own indicator LED
 - Continuous pitch with quantization off, for vibrato and glides from an LFO
+- Two sketches: the original single-pin audio output, and a 2-pin version (Mozzi's former "HIFI" mode) with a much cleaner sound
 
 ## Waveforms
 
@@ -42,9 +43,13 @@ First I noticed is that I got the buttons on the wrong side of the panel, I noti
 | A1 | CV input |
 | D2 | Waveform button (to GND) |
 | D3 | Quantize button (to GND) |
-| D4–D8, D10–D12 | Waveform LEDs, in the order of the table above |
-| D9 | Audio output (Mozzi PWM) |
+| D4–D8, D10–D12 | Waveform LEDs, in the order of the table above (single-pin version) |
+| D4–D8, A3, D11, D12 | Waveform LEDs, in the order of the table above (2-pin version) |
+| D9 | Audio output (single-pin), or high bits (2-pin) |
+| D10 | Audio output low bits (2-pin version only) |
 | D13 | Quantize LED (lights together with the on-board LED) |
+
+The 2-pin version needs D10 for audio, so the sixth waveform LED moves to A3, which works as a normal digital output on the Uno.
 
 The buttons use the Uno's internal pull-ups, so no resistors are needed. Each LED gets a 1k series resistor (470Ω if they're too dim).
 
@@ -60,10 +65,27 @@ The buttons use the Uno's internal pull-ups, so no resistors are needed. Each LE
 
 The diodes protect the pin from voltages above 5V and below 0V. Use Schottky diodes: a regular silicon diode would let the pin go slightly past the ATmega's limits.
 
-### Audio output
+### Audio output, single-pin version (`Arduino_VCO_Thing`)
 
 - D9 → 1k resistor → capacitor to GND (low-pass filter) → 10µF series capacitor → output jack tip
 - Values between 33nF and 56nF work well in the filter: larger values darken the sound and better suppress the PWM carrier
+
+### Audio output, 2-pin version (`Arduino_VCO_Thing_2pin`)
+
+Two pins carry 7 bits each, summed by two resistors into a 14-bit signal with the PWM carrier at 125kHz, far above the audible range. Compared with the single-pin version, the noise floor is much lower and the filter no longer has to dull the treble. The difference is very noticeable.
+
+- D9 → 3.9k resistor → summing point
+- D10 → 499k resistor → same summing point
+- Summing point → capacitor to GND (low-pass filter, about 4.7nF; up to 10nF if it sounds harsh) → 10µF series capacitor → output jack tip
+
+The ratio between the two resistors (499 / 3.9 ≈ 128) is what matters, so use 1% resistors or measure a few and pick the closest pair. 470k + 27k in series is a workable substitute for 499k. The single-pin circuit sounds badly distorted with the 2-pin sketch, so the resistors have to change together with the code.
+
+The mode is selected at the top of the sketch, before `#include <Mozzi.h>`:
+
+```cpp
+#include <MozziConfigValues.h>
+#define MOZZI_AUDIO_MODE MOZZI_OUTPUT_2PIN_PWM
+```
 
 The output level is a few volts, below the usual 10V peak-to-peak of Eurorack. An op-amp gain stage is a possible improvement.
 
@@ -80,7 +102,7 @@ The original design is on Tinkercad, if you want to export it in another format 
 ## Building
 
 1. Install the Mozzi library (version 2.x) from the Arduino IDE library manager.
-2. Open the ino file, select the Arduino Uno board and upload.
+2. Open the sketch for your output circuit, `Arduino_VCO_Thing/Arduino_VCO_Thing.ino` (single-pin) or `Arduino_VCO_Thing_2pin/Arduino_VCO_Thing_2pin.ino` (2-pin), select the Arduino Uno board and upload.
 
 ### Compile error with the Linux distro Arduino IDE
 
@@ -114,7 +136,8 @@ To calibrate with a keyboard such as the KeyStep: set `VREF` first, play the sam
 
 - The Uno's ADC is 10-bit: about 17 steps per semitone on the CV input. With quantization on this doesn't show; with it off, very slow glides can sound slightly stepped.
 - The CV range is 0 to 5V. Negative voltages read as 0V, and anything above 5V as the highest note.
-- 8-bit audio through PWM: the character is digital and a bit gritty, which is part of the charm.
+- 8-bit audio through PWM in the single-pin version: the character is digital and a bit gritty, which is part of the charm.
+- In both versions the wavetables are 8-bit and the oscillator runs at 16384Hz, so high notes have some aliasing (a slightly metallic edge). The 2-pin output cleans up the noise, but not this.
 
 ## Acknowledgements
 
